@@ -19,6 +19,8 @@ def exercise_input():
 def check_sign(x, y):
     if (x % 2 == 0) and (y % 2 == 0):
         print("both positive")
+    elif not (x % 2 == 0) and not (y % 2 == 0):
+        print("both negative")
 
 
 def test_input_both_positive(capsys):
@@ -27,6 +29,14 @@ def test_input_both_positive(capsys):
         check_sign(test_x, test_y)
         captured = capsys.readouterr()
         assert "both positive" == captured.out.rstrip()
+
+
+def test_input_both_negative(capsys):
+    with patch('random.randint', side_effect=[3, 3]):
+        test_x, test_y = exercise_input()
+        check_sign(test_x, test_y)
+        captured = capsys.readouterr()
+        assert "both negative" == captured.out.rstrip()
 
 
 check_x, check_y = exercise_input()
