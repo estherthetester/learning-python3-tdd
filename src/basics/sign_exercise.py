@@ -17,11 +17,11 @@ def exercise_input():
 
 
 def check_sign(x, y):
-    if (x % 2 == 0) and (y % 2 == 0):
+    if (x > 0) and (y > 0):
         print("both positive")
-    elif not (x % 2 == 0) and not (y % 2 == 0):
+    elif (x < 0) and (y < 0):
         print("both negative")
-    elif (x % 2 == 0) and not (y % 2 == 0):
+    elif (x > 0) and (y < 0):
         print("x is positive and y is negative")
     else:
         print("y is positive and x is negative")
@@ -36,7 +36,7 @@ def test_input_both_positive(capsys):
 
 
 def test_input_both_negative(capsys):
-    with patch('random.randint', side_effect=[3, 3]):
+    with patch('random.randint', side_effect=[-2, -2]):
         test_x, test_y = exercise_input()
         check_sign(test_x, test_y)
         captured = capsys.readouterr()
@@ -44,7 +44,7 @@ def test_input_both_negative(capsys):
 
 
 def test_input_x_positive_y_negative(capsys):
-    with patch('random.randint', side_effect=[2, 3]):
+    with patch('random.randint', side_effect=[2, -3]):
         test_x, test_y = exercise_input()
         check_sign(test_x, test_y)
         captured = capsys.readouterr()
@@ -52,11 +52,27 @@ def test_input_x_positive_y_negative(capsys):
 
 
 def test_input_y_positive_x_negative(capsys):
-    with patch('random.randint', side_effect=[3, 2]):
+    with patch('random.randint', side_effect=[-3, 2]):
         test_x, test_y = exercise_input()
         check_sign(test_x, test_y)
         captured = capsys.readouterr()
         assert "y is positive and x is negative" == captured.out.rstrip()
+
+
+def test_input_both_zero_to_positive(capsys):
+    with patch('random.randint', side_effect=[0, 0, 2, 2]):
+        test_x, test_y = exercise_input()
+        check_sign(test_x, test_y)
+        captured = capsys.readouterr()
+        assert "both positive" == captured.out.rstrip()
+
+
+def test_input_both_zero_to_negative(capsys):
+    with patch('random.randint', side_effect=[0, 0, -2, -2]):
+        test_x, test_y = exercise_input()
+        check_sign(test_x, test_y)
+        captured = capsys.readouterr()
+        assert "both negative" == captured.out.rstrip()
 
 
 check_x, check_y = exercise_input()
