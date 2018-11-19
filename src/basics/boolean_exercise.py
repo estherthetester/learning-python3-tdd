@@ -1,4 +1,5 @@
 from random import choice, randint
+from unittest.mock import patch
 
 
 def exercise_inputs():
@@ -14,6 +15,16 @@ def calling_in_sick(actually_sick, kinda_sick, hate_your_job, sick_days):
         return True
     else:
         return False
+
+
+def test_exercise_inputs():
+    with patch('boolean_exercise.choice', side_effect=[True, True, True]):
+        with patch('boolean_exercise.randint', return_value=1):
+            w, x, y, z = exercise_inputs()
+            assert w
+            assert x
+            assert y
+            assert 1 == z
 
 
 def test_calling_in_sick_actually_sick():
@@ -37,6 +48,7 @@ def test_going_to_work_no_leave():
 
 def test_going_to_work_love_job():
     assert not calling_in_sick(False, True, False, 10)
+
 
 
 # randomly assigns values to these four variables
