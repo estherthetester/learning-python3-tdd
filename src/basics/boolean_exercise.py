@@ -50,7 +50,6 @@ def test_going_to_work_love_job():
     assert not calling_in_sick(False, True, False, 10)
 
 
-
 # randomly assigns values to these four variables
 really_sick, fake_sick, hate_job, days = exercise_inputs()
 calling_in_sick(really_sick, fake_sick, hate_job, days)
