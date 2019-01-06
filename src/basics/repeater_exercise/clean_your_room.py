@@ -8,11 +8,11 @@ def print_clean_room(number_of_times=1):
 
 
 def number_of_times_to_tell():
-    return input("How many times do I have to tell you?")
+    return input("How many times do I have to tell you? ")
 
 
 def main():
-    print_clean_room(number_of_times_to_tell())
+    print_clean_room(int(number_of_times_to_tell()))
 
 
 if __name__ == '__main__':
