@@ -1,18 +1,22 @@
 # Print a staircase of emoji's (1-10) using a while and for loop.
 
 
+SMILE_FACE = "\U0001f600"
+SMILE_FACE_STAIRCASE = SMILE_FACE + "\n" + SMILE_FACE + SMILE_FACE + "\n"
+
+
 def print_emoji_nested(stairs):
     emojis = ""
     emoji = 1
     for stair in range(1, stairs+1):
         while emoji <= stair:
-            emojis += "\U0001f600"
+            emojis += SMILE_FACE
             emoji += 1
         print(emojis)
 
 
 def test_should_print_emoji_nested(capsys):
-    expected = "\U0001f600\n\U0001f600\U0001f600\n"
+    expected = SMILE_FACE_STAIRCASE
     print_emoji_nested(2)
     output = capsys.readouterr()
 
@@ -22,11 +26,11 @@ def test_should_print_emoji_nested(capsys):
 def print_emoji_for_loop(stairs):
 
     for stair in range(1, stairs+1):
-        print("\U0001f600" * stair)
+        print(SMILE_FACE * stair)
 
 
 def test_should_print_emoji_for_loop(capsys):
-    expected = "\U0001f600\n\U0001f600\U0001f600\n"
+    expected = SMILE_FACE_STAIRCASE
     print_emoji_for_loop(2)
     output = capsys.readouterr()
 
@@ -36,12 +40,12 @@ def test_should_print_emoji_for_loop(capsys):
 def print_emoji_while_loop(stairs):
     stair = 1
     while stair <= stairs:
-        print("\U0001f600" * stair)
+        print(SMILE_FACE * stair)
         stair += 1
 
 
 def test_should_print_emoji_while_loop(capsys):
-    expected = "\U0001f600\n\U0001f600\U0001f600\n"
+    expected = SMILE_FACE_STAIRCASE
     print_emoji_while_loop(2)
     output = capsys.readouterr()
 
