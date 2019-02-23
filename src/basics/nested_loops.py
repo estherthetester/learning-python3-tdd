@@ -3,6 +3,8 @@
 
 SMILE_FACE = "\U0001f600"
 SMILE_FACE_STAIRCASE = SMILE_FACE + "\n" + SMILE_FACE + SMILE_FACE + "\n"
+SMILE_FACE_CENTRED = " " + SMILE_FACE + " " + "\n" + \
+                     SMILE_FACE + SMILE_FACE + "\n"
 
 #Learning: using string multiplication means we can reduce the function from 8 lines to 3.
 def print_emoji_nested(stairs):
@@ -52,6 +54,21 @@ def test_should_print_emoji_while_loop(capsys):
     assert output.out == expected
 
 
+def print_emoji_centred(stairs):
+    for stair in range(1, stairs+1):
+        offset = " " * (stairs - stair)
+        print(offset + (SMILE_FACE * stair) + offset)
+
+
+def test_should_print_emoji_centred(capsys):
+    expected = SMILE_FACE_CENTRED
+    print_emoji_centred(2)
+    output = capsys.readouterr()
+
+    assert output.out == expected
+
+
 print_emoji_nested(10)
 print_emoji_for_loop(10)
 print_emoji_while_loop(10)
+print_emoji_centred(10)
