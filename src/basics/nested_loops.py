@@ -4,7 +4,7 @@
 SMILE_FACE = "\U0001f600"
 SMILE_FACE_STAIRCASE = SMILE_FACE + "\n" + SMILE_FACE + SMILE_FACE + "\n"
 
-
+#Learning: using string multiplication means we can reduce the function from 8 lines to 3.
 def print_emoji_nested(stairs):
     emojis = ""
     emoji = 1
